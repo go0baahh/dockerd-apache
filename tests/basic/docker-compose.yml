@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+  apache:
+    image: $IMAGE
+    volumes:
+      - ./tests.sh:/usr/local/bin/tests.sh
+      - ./apache_modules:/home/dockerd/apache_modules

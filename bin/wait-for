@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+[[ -n "${DEBUG}" ]] && set -ex || set -e
+[ "$#" -lt 6 ] && echo "Error: Illegal number of parameters"
+
+started=0
+command=$1
+service=$2
+host=$3
+attempts=$4
+wait=$5
+delay=$6
+
+sleep "${delay}"
+for i in $(seq 1 "${attempts}"); do
+    if eval "${command}"; then
+        started=1
+        break
+    fi
+    echo "${service} is starting..."
+    sleep "${wait}"
+done
+
+[[ "${started}" -eq '0' ]] && echo >&2 "Error. ${service} is unreachable."
+echo "${service} has started!"

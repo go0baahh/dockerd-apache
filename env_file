@@ -1,0 +1,63 @@
+##
+# Docker env vars
+##
+DEBIAN_FRONTEND=noninteractive
+
+# Path to this .env file relative to
+# the Dockerfile
+ENV=env_file
+
+# Docker hub repo
+REPO=iodockerd/apache
+
+# Version of the application/service
+# PHP ->7.4<-, Ubuntu ->18.04<-
+TAG=2.4
+
+# Dockerd image release version.
+# Corresponds to release tag:
+# github.com/dockerd-io/apache/releases
+DIO_TAG=
+
+# Local container image name/label
+NAME=apache-dockerd
+
+# Image to build on top of
+FROM=httpd:$(TAG)
+
+# Location of application files
+# Commonly /var/www/html
+APP_ROOT=/home/dockerd/code
+
+# Host:container files to mount
+VOLUMES=/mnt/d/docker/test:/home/dockerd/code
+
+# todo:
+# Location of host, mounted files
+#FILES_DIR=/mnt/files
+
+# Host:container ports to expose
+PORTS=80:80
+
+##
+# Apache env vars
+##
+
+# Location of apache itself
+APACHE_DIR=/usr/local/apache2
+
+# todo:
+APACHE_MPM=event
+
+# Template for build
+# Options: php-fpm, html
+APACHE_PRESET=html
+
+# Apache version to pull/build
+APACHE_VER=2.4
+
+#APACHE_DIRECTORY_INDEX=
+#APACHE_INDEXES_ENABLED=
+#APACHE_BACKEND_HOST=
+#APACHE_FCGI_PROXY_CONN_TIMEOUT=
+#APACHE_FCGI_PROXY_TIMEOUT=

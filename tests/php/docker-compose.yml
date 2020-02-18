@@ -1,0 +1,19 @@
+# todo: mvp this
+version: "2"
+
+services:
+  apache:
+    image: $IMAGE
+    environment:
+      APACHE_PRESET: php-fpm
+    depends_on:
+      - php
+    volumes:
+      - codebase:/home/dockerd/code/
+  php:
+    image: iodockerd/php
+    volumes:
+      - codebase:/home/dockerd/code/
+
+volumes:
+  codebase:
